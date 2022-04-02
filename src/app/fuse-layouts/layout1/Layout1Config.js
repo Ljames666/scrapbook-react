@@ -1,11 +1,11 @@
 const config = {
   title: 'Layout 1 - Vertical',
   defaults: {
-    mode: 'container',
+    mode: 'fullwidth',
     containerWidth: 1570,
     navbar: {
       display: true,
-      style: 'style-1',
+      style: 'style-2',
       folded: true,
       position: 'left',
     },
