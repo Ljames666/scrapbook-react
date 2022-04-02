@@ -15,7 +15,9 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import { submitLogin } from 'app/auth/store/loginSlice';
 
 import { Root, GradientSection } from './styleds';
@@ -52,32 +54,38 @@ function Login() {
   }
 
   return (
-    <Root className="flex flex-col flex-auto flex-shrink-0 p-24 md:flex-row md:p-0">
+    <Root
+      sx={{ height: '90vh' }}
+      className="flex flex-col flex-auto flex-shrink-0 p-24 md:flex-row md:p-0"
+    >
       <GradientSection className="flex flex-col flex-grow-0 items-center text-white p-16 text-center md:p-128 md:items-start md:flex-shrink-0 md:flex-1 md:text-left">
-        <FuseAnimate animation="transition.expandIn">
-          <img className="w-128 mb-32" src="assets/images/logos/logo.png" alt="logo" />
-        </FuseAnimate>
-
-        <FuseAnimate animation="transition.slideUpIn" delay={400}>
+        <FuseAnimate animation="transition.slideUpIn" delay={300}>
           <Typography variant="h3" color="inherit" className="font-800 leading-tight">
-            Welcome to the <br /> Growbase Admin!
+            Bem-vindo ao seu
+            <br /> Scrapbook!
           </Typography>
         </FuseAnimate>
 
-        <FuseAnimate delay={500}>
-          <Typography variant="subtitle1" color="inherit" className="mt-32">
-            Powerful and professional admin template for Web Applications, CRM, CMS, Admin Panels
-            and more.
+        <FuseAnimate delay={600}>
+          <Typography variant="h5" color="inherit" className="mt-32 mb-32">
+            Um App onde vôce pode organizar e administratar suas tarefas, contatos e notas em geral.
+          </Typography>
+        </FuseAnimate>
+
+        <FuseAnimate delay={1200}>
+          <Typography variant="h4" className=" font-bold text-20 sm:text-24">
+            Faça login na sua conta <DoubleArrowIcon />
           </Typography>
         </FuseAnimate>
       </GradientSection>
 
-      <FuseAnimate animation={{ translateX: [0, '100%'] }}>
+      <FuseAnimate animation={{ translateX: [0, '100%'] }} delay={1200}>
         <Card className="w-full max-w-400 mx-auto m-16 md:m-0" square>
-          <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
-            <Typography variant="h6" className="mb-32 font-bold text-20 sm:text-24">
-              Login to your account
-            </Typography>
+          <CardContent
+            sx={{ height: '90%' }}
+            className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 "
+          >
+            <img className="w-128 mb-32" src="assets/images/logos/myScrapbook.png" alt="logo" />
 
             <Formsy
               onValidSubmit={handleSubmit}
@@ -130,7 +138,7 @@ function Login() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between">
                 <CheckboxFormsy
-                  className="my-16"
+                  className="my-10"
                   name="remember"
                   value={false}
                   label="Remember Me"
@@ -145,7 +153,7 @@ function Login() {
                 type="submit"
                 variant="contained"
                 color="primary"
-                className="w-full mx-auto mt-16"
+                className="w-full mx-auto mt-10"
                 aria-label="LOG IN"
                 disabled={!isFormValid}
                 value="legacy"
@@ -154,24 +162,24 @@ function Login() {
               </Button>
             </Formsy>
 
-            <div className="my-24 flex items-center justify-center">
+            <div className="my-20 flex items-center justify-center">
               <Divider className="w-32" />
               <span className="mx-8 font-bold">OR</span>
               <Divider className="w-32" />
             </div>
 
             <Button variant="contained" color="secondary" size="small" className="w-192 mb-8">
-              Log in with Google
+              Entre com Google <GoogleIcon className="text-20 mx-8" color="action" />
             </Button>
 
             <Button variant="contained" color="primary" size="small" className="w-192">
-              Log in with Facebook
+              Entre com Facebook <FacebookIcon className="text-20 mx-8" />
             </Button>
 
             <div className="flex flex-col items-center justify-center pt-32 pb-24">
-              <span className="font-medium">Don't have an account?</span>
+              <span className="font-medium">Não tem uma conta?</span>
               <Link className="font-medium" to="/register">
-                Create an account
+                Crie uma conta
               </Link>
             </div>
           </CardContent>
