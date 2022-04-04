@@ -14,6 +14,7 @@ import FuseNavVerticalCollapse from './vertical/types/FuseNavVerticalCollapse';
 import FuseNavVerticalGroup from './vertical/types/FuseNavVerticalGroup';
 import FuseNavVerticalItem from './vertical/types/FuseNavVerticalItem';
 import FuseNavVerticalLink from './vertical/types/FuseNavVerticalLink';
+import FuseNavVerticalButton from './vertical/types/FuseNavVerticalButton';
 import { registerComponent } from './FuseNavItem';
 
 const inputGlobalStyles = (
@@ -49,6 +50,7 @@ registerComponent('vertical-group', FuseNavVerticalGroup);
 registerComponent('vertical-collapse', FuseNavVerticalCollapse);
 registerComponent('vertical-item', FuseNavVerticalItem);
 registerComponent('vertical-link', FuseNavVerticalLink);
+registerComponent('vertical-button', FuseNavVerticalButton);
 registerComponent('horizontal-group', FuseNavHorizontalGroup);
 registerComponent('horizontal-collapse', FuseNavHorizontalCollapse);
 registerComponent('horizontal-item', FuseNavHorizontalItem);
