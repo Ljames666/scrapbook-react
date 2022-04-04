@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
+import { AiFillGithub, AiOutlineCopyrightCircle } from 'react-icons/ai';
+import { SiMaterialui, SiReact, SiTailwindcss } from 'react-icons/si';
 
 function FooterLayout1(props) {
   const footerTheme = useSelector(selectFooterTheme);
@@ -18,8 +20,17 @@ function FooterLayout1(props) {
         color="default"
         style={{ backgroundColor: footerTheme.palette.background.paper }}
       >
-        <Toolbar className="min-h-48 md:min-h-64 px-8 sm:px-12 py-0 flex items-center overflow-x-auto">
-          <Typography>Footer</Typography>
+        <Toolbar className="min-h-48 md:min-h-36 px-8 sm:px-12 py-0 flex items-center justify-between overflow-x-auto">
+          <Typography className="flex items-center justify-between text-sm">
+            <AiOutlineCopyrightCircle style={{ margin: '0 5px 8px 20px' }} /> Copyright 2022 by
+            Jameson Paz
+          </Typography>
+          <div style={{ fontSize: '3rem' }} className="flex justify-between">
+            <SiReact style={{ marginRight: '20px' }} />
+            <SiMaterialui style={{ marginRight: '20px' }} />
+            <SiTailwindcss style={{ marginRight: '20px' }} />
+            <AiFillGithub style={{ marginRight: '20px' }} />
+          </div>
         </Toolbar>
       </AppBar>
     </ThemeProvider>

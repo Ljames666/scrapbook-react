@@ -5,35 +5,53 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDefaultSettings } from 'app/store/fuse/settingsSlice';
 import _ from '@lodash';
-import { navbarToggleMobile, navbarToggle } from '../../store/fuse/navbarSlice';
+import {
+  navbarToggleMobile,
+  navbarToggle,
+  navbarOpenFolded,
+  navbarCloseFolded,
+} from '../../store/fuse/navbarSlice';
 
 function NavbarToggleButton(props) {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const mdDown = useMediaQuery(theme.breakpoints.down('lg'));
-  const settings = useSelector(({ fuse }) => fuse.settings.current);
-  const { config } = settings.layout;
+  // const mdDown = useMediaQuery(theme.breakpoints.down('lg'));
+  // const settings = useSelector(({ fuse }) => fuse.settings.current);
+  // const { config } = settings.layout;
+
+  const configNav = useSelector(({ fuse }) => fuse.settings.current.layout.config);
+  const navbar = useSelector(({ fuse }) => fuse.navbar);
+
+  const { folded } = configNav.navbar;
+  const foldedandclosed = folded && !navbar.foldedOpen;
 
   return (
     <IconButton
       className={props.className}
       color="inherit"
       size="small"
-      onClick={(ev) => {
-        if (mdDown) {
-          dispatch(navbarToggleMobile());
-        } else if (config.navbar.style === 'style-2') {
-          dispatch(
-            setDefaultSettings(
-              _.set({}, 'layout.config.navbar.folded', !settings.layout.config.navbar.folded)
-            )
-          );
-        } else {
-          dispatch(navbarToggle());
-        }
-      }}
+      onClick={(ev) =>
+        foldedandclosed ? dispatch(navbarOpenFolded()) : dispatch(navbarCloseFolded())
+      }
+      // onClick={(ev) => {
+      //   if (mdDown) {
+      //     dispatch(navbarToggleMobile());
+      //   } else if (config.navbar.style === 'style-2') {
+      //     dispatch(
+      //       setDefaultSettings(
+      //         _.set({}, 'layout.config.navbar.folded', !settings.layout.config.navbar.folded)
+      //       )
+      //     );
+      //   } else {
+      //     dispatch(navbarToggle());
+      //   }
+      // }}
     >
-      {props.children}
+      {foldedandclosed ? (
+        <Icon fontSize="medium">menu_open</Icon>
+      ) : (
+        <Icon fontSize="medium">close</Icon>
+      )}
     </IconButton>
   );
 }

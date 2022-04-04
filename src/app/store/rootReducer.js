@@ -1,6 +1,3 @@
-import product from 'app/main/products/store/productSlice';
-import products from 'app/main/products/store/productsSlice';
-
 import { combineReducers } from '@reduxjs/toolkit';
 import auth from 'app/auth/store';
 import fuse from './fuse';
@@ -11,8 +8,7 @@ const createReducer = (asyncReducers) => (state, action) => {
     auth,
     fuse,
     i18n,
-    product,
-    products,
+
     ...asyncReducers,
   });
 

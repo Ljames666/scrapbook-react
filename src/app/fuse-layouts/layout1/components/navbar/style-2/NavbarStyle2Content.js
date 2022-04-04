@@ -7,6 +7,7 @@ import Navigation from 'app/fuse-layouts/shared-components/Navigation';
 import UserNavbarHeader from 'app/fuse-layouts/shared-components/UserNavbarHeader';
 import clsx from 'clsx';
 import { memo } from 'react';
+import { useSelector } from 'react-redux';
 
 const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -37,7 +38,7 @@ const StyledContent = styled(FuseScrollbars)(({ theme }) => ({
 
 function NavbarStyle2Content(props) {
   const theme = useTheme();
-
+  const navbar = useSelector(({ fuse }) => fuse.navbar);
   return (
     <Root className={clsx('flex flex-auto flex-col overflow-hidden h-full', props.className)}>
       <AppBar
@@ -45,9 +46,11 @@ function NavbarStyle2Content(props) {
         position="static"
         className="flex flex-row items-center shrink h-48 md:h-64 min-h-48 md:min-h-64 px-12 shadow-0"
       >
-        <div className="flex flex-1 mx-4">
-          <Logo />
-        </div>
+        {navbar?.foldedOpen && (
+          <div className="flex mx-8 pr-96">
+            <Logo />
+          </div>
+        )}
 
         <NavbarToggleButton className="w-40 h-40 p-0" />
       </AppBar>

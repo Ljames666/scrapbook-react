@@ -1,7 +1,9 @@
 import Hidden from '@mui/material/Hidden';
 import { styled } from '@mui/material/styles';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import keycode from 'keycode';
 import { navbarCloseFolded, navbarOpenFolded, navbarCloseMobile } from 'app/store/fuse/navbarSlice';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavbarStyle2Content from './NavbarStyle2Content';
 
@@ -121,14 +123,53 @@ function NavbarStyle2(props) {
   const dispatch = useDispatch();
   const config = useSelector(({ fuse }) => fuse.settings.current.layout.config);
   const navbar = useSelector(({ fuse }) => fuse.navbar);
-
+  const ref = useRef();
   // const folded = !navbar.open;
   const { folded } = config.navbar;
   const foldedandclosed = folded && !navbar.foldedOpen;
   const foldedandopened = folded && navbar.foldedOpen;
 
+  const handleDocumentKeyDown = useCallback(
+    (event) => {
+      if (keycode(event) === 'esc') {
+        dispatch(navbarCloseFolded());
+      }
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (foldedandopened) {
+      document.addEventListener('keydown', handleDocumentKeyDown);
+    } else {
+      document.removeEventListener('keydown', handleDocumentKeyDown);
+    }
+  }, [handleDocumentKeyDown, foldedandopened]);
+
+  /**
+   * Click Away Listener
+   */
+  useEffect(() => {
+    function handleDocumentClick(ev) {
+      if (ref.current && !ref.current.contains(ev.target)) {
+        dispatch(navbarCloseFolded());
+      }
+    }
+
+    if (foldedandopened) {
+      document.addEventListener('click', handleDocumentClick, true);
+    } else {
+      document.removeEventListener('click', handleDocumentClick, true);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick, true);
+    };
+  }, [foldedandopened, dispatch]);
+
   return (
     <Root
+      ref={ref}
       folded={folded ? 1 : 0}
       open={navbar.open}
       id="fuse-navbar"
@@ -142,7 +183,7 @@ function NavbarStyle2(props) {
           foldedandopened={foldedandopened ? 1 : 0}
           foldedandclosed={foldedandclosed ? 1 : 0}
           onMouseEnter={() => foldedandclosed && dispatch(navbarOpenFolded())}
-          onMouseLeave={() => foldedandopened && dispatch(navbarCloseFolded())}
+          // onMouseLeave={() => foldedandopened && dispatch(navbarCloseFolded())}
         >
           <NavbarStyle2Content className="NavbarStyle2-content" />
         </StyledNavbar>
@@ -159,8 +200,8 @@ function NavbarStyle2(props) {
           anchor={config.navbar.position}
           variant="temporary"
           open={navbar.mobileOpen}
-          onClose={() => dispatch(navbarCloseMobile())}
-          onOpen={() => {}}
+          // onClose={() => dispatch(navbarCloseMobile())}
+          // onOpen={() => {}}
           disableSwipeToOpen
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.

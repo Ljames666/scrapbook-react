@@ -1,10 +1,9 @@
 import React from 'react';
 import { authRoles } from 'app/auth';
 
-const Product = React.lazy(() => import('./show/Product'));
-const Products = React.lazy(() => import('./list/Products'));
+const Contacts = React.lazy(() => import('./Contacts'));
 
-const ProductsConfig = {
+const ContactsConfig = {
   settings: {
     layout: {
       config: {
@@ -12,7 +11,7 @@ const ProductsConfig = {
         scroll: 'content',
         navbar: {
           display: true,
-          folded: false,
+          folded: true,
           position: 'left',
         },
         toolbar: {
@@ -21,25 +20,20 @@ const ProductsConfig = {
           position: 'below',
         },
         footer: {
-          display: false,
+          display: true,
           style: 'fixed',
           position: 'below',
         },
       },
     },
   },
-  auth: authRoles.admin,
+  auth: authRoles.onlyGuest,
   routes: [
     {
-      path: '/products/:id',
-      element: <Product />,
-    },
-    {
-      path: '/products',
-      exact: true,
-      element: <Products />,
+      path: '/contacts',
+      element: <Contacts />,
     },
   ],
 };
 
-export default ProductsConfig;
+export default ContactsConfig;
