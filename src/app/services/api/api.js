@@ -11,7 +11,7 @@ class Api extends FuseUtils.EventEmitter {
   }
 
   setBaseUrl = () => {
-    axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+    axios.defaults.baseURL = 'https://my-messages-apirest.herokuapp.com';
   };
 
   setInterceptors = () => {
