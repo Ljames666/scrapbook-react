@@ -5,14 +5,14 @@ import jwtDecode from 'jwt-decode';
 
 class Api extends FuseUtils.EventEmitter {
   init() {
-    // this.setBaseUrl();
+    this.setBaseUrl();
     this.setInterceptors();
     this.handleAuthentication();
   }
 
-  // setBaseUrl = () => {
-  //   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-  // };
+  setBaseUrl = () => {
+    axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+  };
 
   setInterceptors = () => {
     axios.interceptors.response.use(
@@ -236,5 +236,6 @@ class Api extends FuseUtils.EventEmitter {
 }
 
 const instance = new Api();
+instance.init();
 
 export default instance;

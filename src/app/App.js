@@ -8,7 +8,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { selectCurrLangDir } from 'app/store/i18nSlice';
-import axios from 'axios';
+
 import withAppProviders from './withAppProviders';
 import { Auth } from './auth';
 
@@ -16,7 +16,7 @@ import { Auth } from './auth';
 /**
  * Axios HTTP Request defaults
  */
-axios.defaults.baseURL = 'https://my-messages-apirest.herokuapp.com';
+// axios.defaults.baseURL = ;
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 
