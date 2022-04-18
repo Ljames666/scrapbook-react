@@ -9,15 +9,13 @@ import {
   Button,
   Card,
   CardContent,
-  Divider,
   InputAdornment,
   Icon,
   IconButton,
   Typography,
 } from '@mui/material';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
+
 import { submitLogin } from 'app/auth/store/loginSlice';
 
 import { Root, GradientSection } from './styleds';
@@ -165,20 +163,6 @@ function Login() {
                 Login
               </Button>
             </Formsy>
-
-            <div className="my-20 flex items-center justify-center">
-              <Divider className="w-32" />
-              <span className="mx-8 font-bold">OR</span>
-              <Divider className="w-32" />
-            </div>
-
-            <Button variant="contained" color="secondary" size="small" className="w-192 mb-8">
-              Entre com Google <GoogleIcon className="text-20 mx-8" color="action" />
-            </Button>
-
-            <Button variant="contained" color="primary" size="small" className="w-192">
-              Entre com Facebook <FacebookIcon className="text-20 mx-8" />
-            </Button>
 
             <div className="flex flex-col items-center justify-center pt-32 pb-24">
               <span className="font-medium">Não tem uma conta?</span>
