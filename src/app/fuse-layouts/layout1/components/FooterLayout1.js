@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import AppBar from '@mui/material/AppBar';
 import { ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,6 +9,7 @@ import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
 import clsx from 'clsx';
 import { AiFillGithub, AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { SiMaterialui, SiReact, SiTailwindcss } from 'react-icons/si';
+import { Box, Button } from '@mui/material';
 
 function FooterLayout1(props) {
   const footerTheme = useSelector(selectFooterTheme);
@@ -26,6 +28,16 @@ function FooterLayout1(props) {
             Jameson Paz
           </Typography>
           <div style={{ fontSize: '3rem' }} className="flex justify-between">
+            <img
+              style={{
+                width: '70px',
+                height: 'auto',
+                marginRight: '20px',
+              }}
+              src="assets/images/logos/logo-white.png"
+              alt="logo"
+            />
+
             <SiReact style={{ marginRight: '20px' }} />
             <SiMaterialui style={{ marginRight: '20px' }} />
             <SiTailwindcss style={{ marginRight: '20px' }} />

@@ -11,7 +11,7 @@ const settingsConfig = {
     toolbar: 'dark7',
     footer: 'dark7',
   },
-  loginRedirectUrl: '/', // Default redirect url for the logged-in user
+  loginRedirectUrl: '/tasks', // Default redirect url for the logged-in user
 };
 
 export default settingsConfig;

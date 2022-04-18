@@ -27,7 +27,7 @@ const EmailConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/email',

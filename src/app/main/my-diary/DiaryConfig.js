@@ -27,7 +27,7 @@ const DiaryConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/diary',

@@ -1,4 +1,6 @@
+import { logoutUser } from 'app/auth/store/userSlice';
 import i18next from 'i18next';
+
 import ar from './navigation-i18n/ar';
 import en from './navigation-i18n/en';
 import tr from './navigation-i18n/tr';
@@ -21,7 +23,8 @@ const navigationConfig = [
         translate: 'Home',
         type: 'item',
         icon: 'home',
-        url: '/home',
+        // url: '/home',
+        url: '/release5',
       },
       {
         id: 'contact-component',
@@ -29,7 +32,8 @@ const navigationConfig = [
         translate: 'Contatos',
         type: 'item',
         icon: 'contacts',
-        url: '/contacts',
+        // url: '/contacts',
+        url: '/release',
       },
       {
         id: 'diary-component',
@@ -37,7 +41,8 @@ const navigationConfig = [
         translate: 'Noticias',
         type: 'item',
         icon: 'rss_feed',
-        url: '/diary',
+        // url: '/diary',
+        url: '/release1',
       },
       {
         id: 'email-component',
@@ -45,7 +50,8 @@ const navigationConfig = [
         translate: 'Mailbox',
         type: 'item',
         icon: 'alternate_email',
-        url: '/email',
+        // url: '/email',
+        url: '/release2',
       },
       {
         id: 'pictures-component',
@@ -53,7 +59,8 @@ const navigationConfig = [
         translate: 'Fotos',
         type: 'item',
         icon: 'photo_library',
-        url: '/pictures',
+        // url: '/pictures',
+        url: '/release3',
       },
       {
         id: 'schedule-component',
@@ -61,7 +68,8 @@ const navigationConfig = [
         translate: 'Calendário',
         type: 'item',
         icon: 'calendar_today',
-        url: '/schedule',
+        // url: '/schedule',
+        url: '/release4',
       },
       {
         id: 'task-component',
@@ -73,40 +81,40 @@ const navigationConfig = [
       },
     ],
   },
-  {
-    id: 'divider-component',
-    type: 'divider',
-  },
-  {
-    id: 'actions',
-    title: 'Actions',
-    translate: 'Ações',
-    type: 'group',
-    icon: 'apps',
-    children: [
-      {
-        id: 'seach-component',
-        title: 'Seach',
-        translate: 'Pesquisar',
-        type: 'button',
-        icon: 'search',
-      },
-      {
-        id: 'account-component',
-        title: 'Account',
-        translate: 'Conta',
-        type: 'button',
-        icon: 'account_circle',
-      },
-      {
-        id: 'settings-component',
-        title: 'Settings',
-        translate: 'Configurações',
-        type: 'button',
-        icon: 'settings',
-      },
-    ],
-  },
+  // {
+  //   id: 'divider-component',
+  //   type: 'divider',
+  // },
+  // {
+  //   id: 'actions',
+  //   title: 'Actions',
+  //   translate: 'Ações',
+  //   type: 'group',
+  //   icon: 'apps',
+  //   children: [
+  //     {
+  //       id: 'seach-component',
+  //       title: 'Seach',
+  //       translate: 'Pesquisar',
+  //       type: 'button',
+  //       icon: 'search',
+  //     },
+  //     {
+  //       id: 'account-component',
+  //       title: 'Account',
+  //       translate: 'Conta',
+  //       type: 'button',
+  //       icon: 'account_circle',
+  //     },
+  //     {
+  //       id: 'settings-component',
+  //       title: 'Settings',
+  //       translate: 'Configurações',
+  //       type: 'button',
+  //       icon: 'settings',
+  //     },
+  //   ],
+  // },
   {
     id: 'new-divider-component',
     type: 'divider',
@@ -115,9 +123,9 @@ const navigationConfig = [
     id: 'logout-component',
     title: 'Sair do sistema',
     // translate: 'Sair do sistema',
-    type: 'item',
+    type: 'button',
     icon: 'exit_to_app',
-    url: '/logout',
+    onClick: logoutUser(),
   },
 ];
 

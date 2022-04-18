@@ -15,8 +15,8 @@ import {
   Typography,
 } from '@mui/material';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import { submitLogin } from 'app/auth/store/loginSlice';
 
+import { apiSubmitRegister } from 'app/auth/store/registerSlice';
 import { Root, GradientSection } from './styleds';
 
 function Register() {
@@ -36,7 +36,7 @@ function Register() {
   }
 
   function handleSubmit(model) {
-    dispatch(submitLogin(model));
+    dispatch(apiSubmitRegister(model));
     formRef.current.reset();
   }
 
@@ -72,7 +72,12 @@ function Register() {
             sx={{ height: '90%' }}
             className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 "
           >
-            <img className="w-128 mb-32" src="assets/images/logos/myScrapbook.png" alt="logo" />
+            <img
+              style={{ borderRadius: '5px', border: '1px solid whitesmoke' }}
+              className="w-128 mb-32"
+              src="assets/images/logos/myScrapbook.png"
+              alt="logo"
+            />
 
             <Formsy
               onValidSubmit={handleSubmit}
@@ -163,7 +168,7 @@ function Register() {
               <TextFieldFormsy
                 className="mb-12"
                 type="password"
-                name="password"
+                name="reppeatPassword"
                 label="Repita a senha"
                 InputProps={{
                   className: 'pr-2',

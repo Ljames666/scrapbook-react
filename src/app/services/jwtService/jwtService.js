@@ -1,6 +1,6 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
 /* eslint-disable camelcase */
 
 class JwtService extends FuseUtils.EventEmitter {
@@ -81,15 +81,11 @@ class JwtService extends FuseUtils.EventEmitter {
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('/api/auth/access-token', {
-          data: {
-            access_token: this.getAccessToken(),
-          },
-        })
+        .get(`/login/${this.getAccessToken()}`)
         .then((response) => {
-          if (response.data.user) {
+          if (response.status === 200) {
             this.setSession(response.data.access_token);
-            resolve(response.data.user);
+            resolve(response.data);
           } else {
             this.logout();
             reject(new Error('Failed to login with token.'));
@@ -110,11 +106,11 @@ class JwtService extends FuseUtils.EventEmitter {
 
   setSession = (access_token) => {
     if (access_token) {
-      localStorage.setItem('jwt_access_token', access_token);
-      axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
+      localStorage.setItem('token', access_token);
+      // axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     } else {
-      localStorage.removeItem('jwt_access_token');
-      delete axios.defaults.headers.common.Authorization;
+      localStorage.removeItem('token');
+      // delete axios.defaults.headers.common.Authorization;
     }
   };
 
@@ -126,18 +122,23 @@ class JwtService extends FuseUtils.EventEmitter {
     if (!access_token) {
       return false;
     }
-    const decoded = jwtDecode(access_token);
-    const currentTime = Date.now() / 1000;
-    if (decoded.exp < currentTime) {
-      console.warn('access token expired');
-      return false;
-    }
+    // const decoded = jwtDecode(access_token);
+    // const currentTime = Date.now() / 1000;
+    // if (decoded.exp < currentTime) {
+    //   console.warn('access token expired');
+    //   return false;
+    // }
 
     return true;
   };
 
   getAccessToken = () => {
-    return window.localStorage.getItem('jwt_access_token');
+    let token = window.sessionStorage.getItem('token');
+    if (!token) {
+      token = window.localStorage.getItem('token');
+    }
+
+    return token;
   };
 }
 

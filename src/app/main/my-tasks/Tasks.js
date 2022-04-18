@@ -2,8 +2,12 @@ import { styled } from '@mui/material/styles';
 import FusePageCarded from '@fuse/core/FusePageCarded';
 
 import { Icon } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTask } from 'app/store/main/taskSlice';
 import CheckboxList from './components/tasks-list/List';
 import ModalTaskComponent from './components/modal-task/ModalTask';
+import SidebarTaskComponent from './components/sidebar-content-task/sidebar';
 
 const Root = styled(FusePageCarded)({
   '& .FusePageCarded-header': {},
@@ -13,23 +17,24 @@ const Root = styled(FusePageCarded)({
   '& .FusePageCarded-sidebarContent': {},
 });
 
-function TasksPage(props) {
+function TasksPage() {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getTask(userId.user.user.id));
+  }, [dispatch, userId]);
   return (
     <Root
-      header={
-        <div className="p-24">
-          <h1> tarefas</h1>
-        </div>
-      }
       contentToolbar={
         <div className="px-24">
-          <h4>Content Toolbar</h4>
+          <h3>Suas tarefas {userId.user.user.name}</h3>
         </div>
       }
       content={
         <>
           <CheckboxList />
-          <ModalTaskComponent showModal={false} msg="oi" item />
+          <ModalTaskComponent />
         </>
       }
       leftSidebarHeader={
@@ -51,11 +56,7 @@ function TasksPage(props) {
           </div>
         </div>
       }
-      leftSidebarContent={
-        <div className="p-24">
-          <h4>Content</h4>
-        </div>
-      }
+      leftSidebarContent={<SidebarTaskComponent />}
       sidebarInner
     />
   );

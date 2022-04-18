@@ -85,7 +85,12 @@ function Login() {
             sx={{ height: '90%' }}
             className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 "
           >
-            <img className="w-128 mb-32" src="assets/images/logos/myScrapbook.png" alt="logo" />
+            <img
+              style={{ borderRadius: '5px', border: '1px solid whitesmoke' }}
+              className="w-128 mb-32"
+              src="assets/images/logos/myScrapbook.png"
+              alt="logo"
+            />
 
             <Formsy
               onValidSubmit={handleSubmit}
@@ -97,15 +102,14 @@ function Login() {
               <TextFieldFormsy
                 className="mb-16"
                 type="text"
-                name="email"
-                label="E-mail"
-                validations="isEmail"
-                validationErrors="This is not a valid email"
+                name="user"
+                label="Username"
+                validationErrors="This is not a valid username"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <Icon className="text-20" color="action">
-                        email
+                        person
                       </Icon>
                     </InputAdornment>
                   ),

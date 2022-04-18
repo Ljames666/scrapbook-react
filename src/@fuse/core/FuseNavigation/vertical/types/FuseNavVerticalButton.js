@@ -52,9 +52,9 @@ function FuseNavVerticalButton(props) {
     () => (
       <Root
         button
-        activeClassName="active"
+        // activeClassName="active"
         className="fuse-list-item"
-        onClick={item.onClick}
+        onClick={() => dispatch(item.onClick)}
         end={item.end}
         itempadding={itempadding}
         role="button"

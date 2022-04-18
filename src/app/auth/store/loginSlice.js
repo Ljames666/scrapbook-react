@@ -2,18 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { showMessage } from 'app/store/fuse/messageSlice';
 import firebaseService from 'app/services/firebaseService';
 import Api from 'app/services/api';
+
 import { setUserData } from './userSlice';
 
 export const submitLogin =
-  ({ email, password, remember }) =>
+  ({ user, password, remember }) =>
   async (dispatch) => {
-    return Api.signInWithEmailAndPassword(email, password, remember)
-      .then((user) => {
-        dispatch(setUserData(user));
+    return Api.signInWithUserAndPassword(user, password, remember)
+      .then((userData) => {
+        dispatch(setUserData(userData));
 
         return dispatch(loginSuccess());
       })
       .catch((error) => {
+        console.log(error);
         return dispatch(loginError(error));
       });
   };

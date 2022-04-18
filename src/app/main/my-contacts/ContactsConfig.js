@@ -27,7 +27,7 @@ const ContactsConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/contacts',

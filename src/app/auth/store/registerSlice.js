@@ -2,7 +2,27 @@ import { createSlice } from '@reduxjs/toolkit';
 import { showMessage } from 'app/store/fuse/messageSlice';
 import firebaseService from 'app/services/firebaseService';
 import jwtService from 'app/services/jwtService';
+import Api from 'app/services/api';
 import { createUserSettingsFirebase, setUserData } from './userSlice';
+
+export const apiSubmitRegister =
+  ({ name, username, email, password, reppeatPassword }) =>
+  async (dispatch) => {
+    return Api.createUser({
+      name,
+      username,
+      email,
+      password,
+      reppeatPassword,
+    })
+      .then((response) => {
+        alert(response);
+        return dispatch(registerSuccess());
+      })
+      .catch((error) => {
+        return dispatch(registerError(error));
+      });
+  };
 
 export const submitRegister =
   ({ displayName, password, email }) =>

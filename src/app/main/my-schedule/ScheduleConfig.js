@@ -27,7 +27,7 @@ const ScheduleConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/schedule',

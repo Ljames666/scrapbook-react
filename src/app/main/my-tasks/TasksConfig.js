@@ -7,7 +7,7 @@ const TasksConfig = {
   settings: {
     layout: {
       config: {
-        mode: 'container',
+        mode: 'fullwidth',
         scroll: 'content',
         navbar: {
           display: true,
@@ -15,7 +15,7 @@ const TasksConfig = {
           position: 'left',
         },
         toolbar: {
-          display: false,
+          display: true,
           style: 'fixed',
           position: 'below',
         },
@@ -27,7 +27,7 @@ const TasksConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/Tasks',

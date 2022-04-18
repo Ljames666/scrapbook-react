@@ -17,11 +17,21 @@ function HomePage(props) {
   return (
     <Root
       sx={{ overflow: 'hidden' }}
-      header={
-        <div className="p-24">
-          <h4>{t('TITLE')}</h4>
-        </div>
-      }
+      // header={
+      //   <div className="p-24">
+      //     <img
+      //       style={{
+      //         width: '100px',
+      //         height: 'auto',
+      //         borderRadius: '5px',
+      //         border: '1px solid whitesmoke',
+      //       }}
+      //       src="assets/images/logos/myScrapbook.png"
+      //       alt="logo"
+      //     />
+      //     <h4>{t('TITLE')}</h4>
+      //   </div>
+      // }
       // contentToolbar={
       //   <div className="px-24">
       //     <h4>Content Toolbar</h4>
@@ -32,16 +42,6 @@ function HomePage(props) {
           <h4>Content</h4>
           <br />
           <DemoContent />
-        </div>
-      }
-      // leftSidebarHeader={
-      //   <div className="p-24">
-      //     <h4>Content</h4>
-      //   </div>
-      // }
-      leftSidebarContent={
-        <div className="p-24">
-          <h4>Content</h4>
         </div>
       }
       innerScroll

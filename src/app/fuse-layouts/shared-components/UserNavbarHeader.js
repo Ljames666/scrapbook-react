@@ -45,6 +45,7 @@ function UserNavbarHeader(props) {
       </Typography>
       <div className="flex items-center justify-center absolute bottom-0 -mb-44">
         <Avatar
+          sx={{ bgcolor: 'whitesmoke' }}
           className="avatar w-72 h-72 p-8 box-content"
           alt="user photo"
           src={

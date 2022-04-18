@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import { authRoles } from 'app/auth';
 import Home from './Home';
 import en from './i18n/en';
 import tr from './i18n/tr';
@@ -32,6 +33,7 @@ const HomeConfig = {
       },
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: '/home',

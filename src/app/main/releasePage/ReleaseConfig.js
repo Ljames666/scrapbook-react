@@ -10,17 +10,17 @@ const ReleaseConfig = {
         mode: 'container',
         scroll: 'content',
         navbar: {
-          display: false,
-          folded: false,
+          display: true,
+          folded: true,
           position: 'left',
         },
         toolbar: {
-          display: false,
+          display: true,
           style: 'fixed',
           position: 'below',
         },
         footer: {
-          display: false,
+          display: true,
           style: 'fixed',
           position: 'below',
         },
@@ -33,10 +33,30 @@ const ReleaseConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/release',
+      element: <Release />,
+    },
+    {
+      path: '/release1',
+      element: <Release />,
+    },
+    {
+      path: '/release2',
+      element: <Release />,
+    },
+    {
+      path: '/release3',
+      element: <Release />,
+    },
+    {
+      path: '/release4',
+      element: <Release />,
+    },
+    {
+      path: '/release5',
       element: <Release />,
     },
   ],

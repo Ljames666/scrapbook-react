@@ -8,7 +8,7 @@ import {
   Card,
   CardContent,
   // InputAdornment,
-  // Icon,
+  Icon,
   // IconButton,
   Typography,
 } from '@mui/material';
@@ -21,7 +21,7 @@ function Release() {
 
   return (
     <Root
-      sx={{ height: '100vh' }}
+      sx={{ height: '80vh' }}
       className="flex flex-col flex-auto flex-shrink-0 p-24 md:flex-row md:p-0"
     >
       <GradientSection
@@ -29,7 +29,7 @@ function Release() {
         className="flex flex-col flex-auto flex-shrink-0 items-center justify-center p-24 md:flex-row md:p-0"
       >
         <FuseAnimate delay={300}>
-          <Card sx={{ height: '80%', width: '20%' }} elevation={12}>
+          <Card sx={{ height: '70%', width: '20%' }} elevation={12}>
             <CardContent className="flex flex-col  items-center justify-center p-28  md:p-6">
               <img
                 style={{ borderRadius: '10px' }}
@@ -37,13 +37,10 @@ function Release() {
                 src="assets/images/logos/myScrapbook.png"
                 alt="logo"
               />
+              <Icon sx={{ fontSize: '70px' }}>construction</Icon>
               <Typography sx={{ textAlign: 'center' }} className="px-4 mb-16">
-                Ei! Obrigado por conferir nosso aplicativo. Ainda não está totalmente pronto, mas
-                estamos trabalhando duro!
+                Em manutenção!
               </Typography>
-              <Typography>O My Scrapbook APP será lançado em:</Typography>
-
-              <FuseCountdown endDate="2022-04-17" className="my-28" />
             </CardContent>
           </Card>
         </FuseAnimate>

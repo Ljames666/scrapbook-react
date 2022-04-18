@@ -27,7 +27,7 @@ const PicturesConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.admin,
   routes: [
     {
       path: '/pictures',

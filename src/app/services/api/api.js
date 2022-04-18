@@ -5,14 +5,14 @@ import jwtDecode from 'jwt-decode';
 
 class Api extends FuseUtils.EventEmitter {
   init() {
-    this.setBaseUrl();
+    // this.setBaseUrl();
     this.setInterceptors();
     this.handleAuthentication();
   }
 
-  setBaseUrl = () => {
-    axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-  };
+  // setBaseUrl = () => {
+  //   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+  // };
 
   setInterceptors = () => {
     axios.interceptors.response.use(
@@ -52,9 +52,9 @@ class Api extends FuseUtils.EventEmitter {
 
   createUser = (data) => {
     return new Promise((resolve, reject) => {
-      axios.post('/api/auth/register', data).then((response) => {
-        if (response.data.user) {
-          this.setSession(response.data.access_token);
+      axios.post('/cadastro', data).then((response) => {
+        if (response.status === 200) {
+          // this.setSession(response.data.access_token);
           resolve(response.data.user);
         } else {
           reject(response.data.error);
@@ -67,7 +67,7 @@ class Api extends FuseUtils.EventEmitter {
     try {
       const response = await axios.get(url);
 
-      if (response.data.success === true) {
+      if (response.status === 200) {
         return response.data;
       }
 
@@ -81,8 +81,8 @@ class Api extends FuseUtils.EventEmitter {
     try {
       const response = await axios.post(url, data);
 
-      if (response.data.success === true) {
-        return response.data;
+      if (response.status === 200) {
+        return response.data.newService;
       }
 
       return 'erro';
@@ -95,7 +95,7 @@ class Api extends FuseUtils.EventEmitter {
     try {
       const response = await axios.put(url, data);
 
-      if (response.data.success === true) {
+      if (response.status === 200) {
         return response.data;
       }
 
@@ -127,7 +127,7 @@ class Api extends FuseUtils.EventEmitter {
     try {
       const response = await axios.delete(url);
 
-      if (response.data.success === true) {
+      if (response.status === 200) {
         return response.data;
       }
 
@@ -137,23 +137,23 @@ class Api extends FuseUtils.EventEmitter {
     }
   };
 
-  signInWithEmailAndPassword = (email, password, remember) => {
+  signInWithUserAndPassword = (user, password, remember) => {
     return new Promise((resolve, reject) => {
       axios
         .post('/login', {
-          login: email,
+          username: user,
           password,
         })
         .then((response) => {
-          if (response.data.data.user) {
+          if (response.status === 200) {
             if (remember) {
-              this.setSaveSession(response.data.data.access_token);
+              this.setSaveSession(response.data.result.access_token);
             } else {
-              this.setSession(response.data.data.access_token);
+              this.setSession(response.data.result.access_token);
             }
-            resolve(response.data.data.user);
+            resolve(response.data.result);
           } else {
-            reject(response.data.error);
+            reject(response.data);
           }
         });
     });
@@ -188,21 +188,21 @@ class Api extends FuseUtils.EventEmitter {
 
   setSession = (access_token) => {
     if (access_token) {
-      sessionStorage.setItem('jwt_access_token', access_token);
-      axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
+      sessionStorage.setItem('token', access_token);
+      // axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     } else {
-      sessionStorage.removeItem('jwt_access_token');
-      delete axios.defaults.headers.common.Authorization;
+      sessionStorage.removeItem('token');
+      // delete axios.defaults.headers.common.Authorization;
     }
   };
 
   setSaveSession = (access_token) => {
     if (access_token) {
-      localStorage.setItem('jwt_access_token', access_token);
-      axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
+      localStorage.setItem('token', access_token);
+      // axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     } else {
-      localStorage.removeItem('jwt_access_token');
-      delete axios.defaults.headers.common.Authorization;
+      localStorage.removeItem('token');
+      // delete axios.defaults.headers.common.Authorization;
     }
   };
 
@@ -226,9 +226,9 @@ class Api extends FuseUtils.EventEmitter {
   };
 
   getAccessToken = () => {
-    let token = window.sessionStorage.getItem('jwt_access_token');
+    let token = window.sessionStorage.getItem('token');
     if (!token) {
-      token = window.localStorage.getItem('jwt_access_token');
+      token = window.localStorage.getItem('token');
     }
 
     return token;
