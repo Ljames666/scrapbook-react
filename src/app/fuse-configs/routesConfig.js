@@ -14,7 +14,7 @@ import FuseLoading from '@fuse/core/FuseLoading';
 import Error404Page from 'app/main/404/Error404Page';
 
 const routeConfigs = [
-  ReleaseConfig,
+  LoginConfig,
   HomeConfig,
   ContactsConfig,
   DiaryConfig,
@@ -22,8 +22,8 @@ const routeConfigs = [
   PicturesConfig,
   ScheduleConfig,
   TasksConfig,
-  LoginConfig,
   RegisterConfig,
+  ReleaseConfig,
 ];
 
 const routes = [
@@ -33,7 +33,7 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, null),
   {
     path: '/',
-    element: <Navigate to="/login" />,
+    element: <Navigate to="login" />,
   },
   {
     path: 'loading',
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <Navigate to="/login" />,
+    element: <Navigate to="404" />,
   },
 ];
 

@@ -16,7 +16,7 @@ import { Auth } from './auth';
 /**
  * Axios HTTP Request defaults
  */
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = 'https://my-messages-apirest.herokuapp.com';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 
