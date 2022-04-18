@@ -33,7 +33,7 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, null),
   {
     path: '/',
-    element: <Navigate to="login" />,
+    element: <Navigate to="/login" />,
   },
   {
     path: 'loading',
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <Navigate to="404" />,
+    element: <Navigate to="/login" />,
   },
 ];
 
